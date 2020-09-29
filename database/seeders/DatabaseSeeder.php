@@ -14,6 +14,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(ArticlesTableSeeder::class);
+        
+        if ( \App::environment('local') ) {
+            $this->call(ArticlesTableSeeder::class);
+        }
+
+        if ( \App::environment('production') ) {
+            $this->call(ProductionArticlesTableSeeder::class);
+        }
+
     }
 }
